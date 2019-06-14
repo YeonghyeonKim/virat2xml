@@ -17,10 +17,10 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 
 activities = ('Opening', 'Closing', 'Open_Trunk', 'Closing_Trunk') # activities to be detected
 
-DIR_TO_JSON = '/media/ExtHDD001/activity_net_dataset/Virat_dataset/actev-data-repo/partitions'
-DIR_TO_VIDEO = ''
+DIR_TO_JSON = '/media/ExtHDD001/activity_net_dataset/Virat_dataset/actev-data-repo/partitions/ActEV18-1A-Leaderboard-train-20180614'
+DIR_TO_VIDEO = '/media/ExtHDD001/tmp'
 
-DIR_TO_ParentSave = 'Dataset'
+DIR_TO_ParentSave = '/media/ExtHDD001/viratXML'
 
 WIDTH = 1960
 HEIGHT = 1080
@@ -36,7 +36,7 @@ def GenActivitiesDir():
     for act in activities:
         DIR_TO_ActSave = os.path.join(DIR_TO_ParentSave, act)
         if not os.path.exists(DIR_TO_ActSave):
-            print("Generate %s folder".format(DIR_TO_ActSave))
+            print("Generate {} folder".format(DIR_TO_ActSave))
             os.makedirs(DIR_TO_ActSave)
 
 def SaveFrame(cap, info, DIR_TO_ActSave):
@@ -63,7 +63,7 @@ def indent(elem, level=0):
             elem.tail = i
 
 
-def xml_writer(info, videoName, DIR_TO_ActSave):
+def xml_writer(info, DIR_TO_ActSave):
 
     # caculate height and width of image
     # KYH : I am not sure that every video has same resolutionfghos
@@ -144,10 +144,11 @@ if __name__ == "__main__":
                 '''
                 videoName = list(s_jdata['localization'])[0]
                 PATH_TO_VIDEO = os.path.join(DIR_TO_VIDEO, videoName)
-                cap = cv2.VideoCapture(videoName)
+                cap = cv2.VideoCapture(PATH_TO_VIDEO)
                 if not cap.isOpened():
                     print("Can't find {}. To continue, press any keys".format(videoName))
                     input("")
+                    continue
                 DIR_TO_ActSave = os.path.join(DIR_TO_ParentSave, activity, videoName.split(".")[0])
                 info = dict()
 
@@ -187,5 +188,5 @@ if __name__ == "__main__":
                 SaveFrame(cap, info, DIR_TO_ActSave)
 
                 ## Save XML
-                xml_writer(info, videoName, DIR_TO_ActSave)
+                xml_writer(info, DIR_TO_ActSave)
                 info.clear()
