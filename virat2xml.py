@@ -15,7 +15,7 @@ import json
 import cv2
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 
-activities = ('Opening', 'Closing', 'Open_Trunk', 'Closing_trunk') # activities to be detected
+activities = ('Opening', 'Closing', 'Open_Trunk', 'Closing_Trunk') # activities to be detected
 
 DIR_TO_JSON = '/media/ExtHDD001/activity_net_dataset/Virat_dataset/actev-data-repo/partitions'
 DIR_TO_VIDEO = ''
