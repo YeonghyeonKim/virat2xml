@@ -5,7 +5,7 @@ Description :
 Convert Virat dataset json format to PASCAL VOC format
 
 step1. Read and parse json file / Make XML basic format
-step2. Fill XML file
+step2. Fill XML fileds
 step3. Save XML file
 
 '''
