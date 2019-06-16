@@ -77,8 +77,8 @@ def xml_writer(info, DIR_TO_ActSave):
 
         # Generate xml format annotation file
         annotation = Element("annotation")
-        # SubElement(annotation, "folder").text = img_path.split('/')[-2]
-        SubElement(annotation, "filename").text = PATH_TO_FRAME
+        SubElement(annotation, "folder").text = DIR_TO_ParentSave.split('/')[-1]
+        SubElement(annotation, "filename").text = PATH_TO_FRAME.split('/')[-1]
 
         source = Element("source")
         SubElement(source, "database").text = "Unknown"

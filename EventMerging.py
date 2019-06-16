@@ -1,8 +1,7 @@
 import os, sys, glob
 from xml.etree.ElementTree import Element, SubElement, ElementTree, parse
 
-DIR_TO_ParentSave = '/home/kyh/virat2xml/1'
-#DIR_TO_ParentSave = '/media/ExtHDD001/viratXML'
+DIR_TO_ParentSave = '/media/ExtHDD001/viratXML'
 WIDTH = 1960
 HEIGHT = 1080
 
@@ -35,8 +34,8 @@ def xml_writer(info, PATH_TO_XML):
 
     # Generate xml format annotation file
     annotation = Element("annotation")
-    # SubElement(annotation, "folder").text = img_path.split('/')[-2]
-    SubElement(annotation, "filename").text = PATH_TO_FRAME
+    SubElement(annotation, "folder").text = DIR_TO_ParentSave.split('/')[-1]
+    SubElement(annotation, "filename").text = PATH_TO_FRAME.split('/')[-1]
 
     source = Element("source")
     SubElement(source, "database").text = "Unknown"
@@ -67,7 +66,7 @@ def xml_writer(info, PATH_TO_XML):
 
         annotation.append(object)
 
-    # ordering XML data
+    # orderingd XML data
     indent(annotation)
 
     # save XML annotation file
